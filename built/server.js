@@ -32,7 +32,7 @@ const multer_1 = __importDefault(require("multer"));
 const fs_1 = __importDefault(require("fs"));
 const upload = multer_1.default({ dest: __dirname + '/../public/uploads/images' });
 const app = express_1.default();
-const port = 1234;
+const port = 80;
 app.use(express_1.default.urlencoded());
 app.use(express_1.default.json());
 app.get('/change', (req, res) => {
