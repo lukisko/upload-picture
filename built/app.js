@@ -24,13 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const MRE = __importStar(require("@microsoft/mixed-reality-extension-sdk"));
 const fs_1 = __importDefault(require("fs"));
-const imageInfo = require("../public/uploads/images/new.json");
 class LearningWorld {
-    //private board: Board;
-    //private starSystem: groupMask;
-    //private usersTrack: userTrack[];
-    //private wearHat: WearHat;
-    //////////////-------------------------------------------------note: make the magnetic field a little into board
     constructor(context) {
         this.context = context;
         //this.usersTrack = [];
@@ -87,16 +81,10 @@ class LearningWorld {
             }
         });*/
         //console.log(test.id);
-        const someTexture = this.assets.createTexture("demoTexture", {
-            uri: "uploads/images/new.png"
-        });
-        const someMaterial = this.assets.createMaterial("someMaterial", {
-            mainTextureId: someTexture.id,
-        });
         const startPicture = MRE.Actor.CreatePrimitive(this.assets, {
             definition: {
                 shape: MRE.PrimitiveShape.Box,
-                dimensions: { x: imageInfo.width / 100, y: imageInfo.height / 100, z: 0.001 }
+                dimensions: { x: 1, y: 1, z: 0.001 }
             },
             addCollider: true,
             actor: {
@@ -108,21 +96,18 @@ class LearningWorld {
             user.prompt("what is name of the picture?", true)
                 .then((value1) => {
                 if (value1.submitted) {
-                    console.log(value1.text === "list all");
                     if (value1.text === "list all") {
                         fs_1.default.readdir("./public/uploads/images/", (err, files) => {
                             if (err) {
-                                console.log(err);
                                 return;
                             }
-                            ;
                             let str = "";
                             files.forEach((value2) => {
-                                if (value2.match(".png")) {
+                                const regex = /.png$/u;
+                                if (regex.test(value2)) {
                                     str += value2.substring(0, value2.length - 4) + ",";
                                 }
                             });
-                            console.log(str);
                             user.prompt(str);
                         });
                         return;
@@ -145,6 +130,7 @@ class LearningWorld {
         });
     }
     loadPicture(name) {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const imageInfo = require("../public/uploads/images/" + name + ".json");
         const someTexture = this.assets.createTexture(name, {
             uri: "uploads/images/" + name + ".png"
@@ -170,15 +156,19 @@ class LearningWorld {
             user.prompt("What is name of the picture?", true)
                 .then((value1) => {
                 if (value1.submitted) {
-                    console.log(value1.text);
                     if (value1.text === "list all") {
                         fs_1.default.readdir("../public/uploads/images/", (err, files) => {
-                            if (err)
+                            if (err) {
                                 return;
+                            }
                             let str = "";
                             files.forEach((value2) => {
-                                str += value2 + ",";
+                                const regex = /.png$/u;
+                                if (regex.test(value2)) {
+                                    str += value2.substring(0, value2.length - 4) + ",";
+                                }
                             });
+                            user.prompt(str);
                         });
                         return;
                     }

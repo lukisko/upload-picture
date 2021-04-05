@@ -8,7 +8,7 @@ import path from 'path';
 import multer from 'multer';
 import fs from 'fs';
 
-const upload = multer({dest: __dirname + '/../public/uploads/images'});
+const upload = multer({ dest: __dirname + '/../public/uploads/images' });
 
 const app = express();
 const port = 1234;
@@ -16,50 +16,41 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 app.get('/change', (req: any, res: any) => {
-  res.sendFile(path.join(__dirname + '/../public/index2.html'));
+	res.sendFile(path.join(__dirname + '/../public/index2.html'));
 });
 
-app.post('/post',(req: any,res: any)=>{
-    console.log("I got",req.body)
-    res.send('saved');
+app.post('/post', (req: any, res: any) => {
+	res.send('saved');
 });
 
 app.use(express.static('public'));
 
 app.post('/upload', upload.single('photo'), (req, res) => {
-    if(req.file) {
+	if (req.file) {
 		const picName = req.body['picName'];
-		const regex = new RegExp("^\w{1,}$");
-		if (!/^\w{1,}$/.test(picName)){
-			fs.unlink(req.file.path, ()=>{});
+		const regex = /^\w{1,}$/u
+		if (!regex.test(picName)) {
+			fs.unlink(req.file.path, () => { });
 			throw 'please name the picture just with letters and underscores';
-			console.log("number1");
-			res.send("plese use just english letters for name of file");
-			
-			return;
 		}
-		console.log("number2");
 		const oldPath = req.file.path;
-		const newPath = __dirname+"/../public/uploads/images/"+picName+".png";
-		fs.writeFile(__dirname+"/../public/uploads/images/"+picName+".json",JSON.stringify({
-			width:parseInt(req.body['width']),
-			height:parseInt(req.body['height'])
-		}),()=>{});
-		console.log(req.body['width']);
-		fs.rename(oldPath,newPath,()=>{});
-		res.send('Upload succesful'+'.\n Picture is saved under name: '+picName);
-        //res.json(req.file);
-    }
-    else throw 'error';
+		const newPath = __dirname + "/../public/uploads/images/" + picName + ".png";
+		fs.writeFile(__dirname + "/../public/uploads/images/" + picName + ".json", JSON.stringify({
+			width: parseInt(req.body['width']),
+			height: parseInt(req.body['height'])
+		}), () => { });
+		fs.rename(oldPath, newPath, () => { });
+		res.send('Upload succesful' + '.\n Picture is saved under name: ' + picName);
+		//res.json(req.file);
+	}
+	else { throw 'error' }
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+	//console.log(`Example app listening at http://localhost:${port}`)
 });
 
 //-------------------------------setting picture uploader
-
-
 
 //-------------------------------end of picture upload
 

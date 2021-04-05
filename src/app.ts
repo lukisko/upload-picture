@@ -1,32 +1,13 @@
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
-import { text } from 'express';
 import fs from 'fs';
-//import groupMask from './groupMask';
-//import Board from './interactiveBoard';
-//import WearHat from "./wearHat";
-import MultipleChoice, { MultipleChoiceProp } from './multipleChoice'; //when set to 16 0 -4
-
-/*export type userTrack = {
-	user: MRE.User;
-	hat: MRE.Actor;
-	stars: MRE.Actor[];
-}*/
 
 type imageDimensions = {
-	width: number,
-	height: number
+	width: number;
+	height: number;
 }
-
-const imageInfo: imageDimensions = require("../public/uploads/images/new.json");
 
 export default class LearningWorld {
 	private assets: MRE.AssetContainer;
-	//private board: Board;
-	//private starSystem: groupMask;
-	//private usersTrack: userTrack[];
-	//private wearHat: WearHat;
-	//////////////-------------------------------------------------note: make the magnetic field a little into board
-
 	constructor(private context: MRE.Context) {
 		//this.usersTrack = [];
 		this.assets = new MRE.AssetContainer(this.context);
@@ -84,19 +65,10 @@ export default class LearningWorld {
 		});*/
 		//console.log(test.id);
 
-
-
-		const someTexture = this.assets.createTexture("demoTexture",{
-			uri: "uploads/images/new.png"
-		});
-		const someMaterial = this.assets.createMaterial("someMaterial",{
-			mainTextureId:someTexture.id,
-		});
-
 		const startPicture = MRE.Actor.CreatePrimitive(this.assets,{
 			definition:{
 				shape: MRE.PrimitiveShape.Box,
-				dimensions:{x:imageInfo.width/100,y:imageInfo.height/100,z:0.001}
+				dimensions:{x:1,y:1,z:0.001}
 			},
 			addCollider:true,
 			actor:{
@@ -112,17 +84,16 @@ export default class LearningWorld {
 			user.prompt("what is name of the picture?",true)
 			.then((value1)=>{
 				if (value1.submitted){
-					console.log(value1.text === "list all");
 					if (value1.text === "list all"){
 						fs.readdir("./public/uploads/images/",(err,files)=>{
-							if (err) {console.log(err); return;};
+							if (err) { return }
 							let str= "";
 							files.forEach((value2)=>{
-								if (value2.match(".png")){
+								const regex = /.png$/u;
+								if (regex.test(value2)){
 									str+=value2.substring(0,value2.length-4)+",";
 								}
 							});
-							console.log(str);
 							user.prompt(str);
 						})
 						return;
@@ -146,6 +117,7 @@ export default class LearningWorld {
 	}
 
 	private loadPicture(name: string){
+		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const imageInfo: imageDimensions = require("../public/uploads/images/"+name+".json");
 		const someTexture = this.assets.createTexture(name,{
 			uri: "uploads/images/"+name+".png"
@@ -172,14 +144,17 @@ export default class LearningWorld {
 			user.prompt("What is name of the picture?",true)
 			.then((value1)=>{
 				if (value1.submitted){
-					console.log(value1.text);
 					if (value1.text === "list all"){
 						fs.readdir("../public/uploads/images/",(err,files)=>{
-							if (err) return;
+							if (err) { return }
 							let str= "";
 							files.forEach((value2)=>{
-								str+=value2+",";
+								const regex = /.png$/u;
+								if (regex.test(value2)){
+									str+=value2.substring(0,value2.length-4)+",";
+								}
 							});
+							user.prompt(str);
 						})
 						return;
 					}

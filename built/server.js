@@ -39,38 +39,33 @@ app.get('/change', (req, res) => {
     res.sendFile(path_2.default.join(__dirname + '/../public/index2.html'));
 });
 app.post('/post', (req, res) => {
-    console.log("I got", req.body);
     res.send('saved');
 });
 app.use(express_1.default.static('public'));
 app.post('/upload', upload.single('photo'), (req, res) => {
     if (req.file) {
         const picName = req.body['picName'];
-        const regex = new RegExp("^\w{1,}$");
-        if (!/^\w{1,}$/.test(picName)) {
+        const regex = /^\w{1,}$/u;
+        if (!regex.test(picName)) {
             fs_1.default.unlink(req.file.path, () => { });
             throw 'please name the picture just with letters and underscores';
-            console.log("number1");
-            res.send("plese use just english letters for name of file");
-            return;
         }
-        console.log("number2");
         const oldPath = req.file.path;
         const newPath = __dirname + "/../public/uploads/images/" + picName + ".png";
         fs_1.default.writeFile(__dirname + "/../public/uploads/images/" + picName + ".json", JSON.stringify({
             width: parseInt(req.body['width']),
             height: parseInt(req.body['height'])
         }), () => { });
-        console.log(req.body['width']);
         fs_1.default.rename(oldPath, newPath, () => { });
         res.send('Upload succesful' + '.\n Picture is saved under name: ' + picName);
         //res.json(req.file);
     }
-    else
+    else {
         throw 'error';
+    }
 });
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    //console.log(`Example app listening at http://localhost:${port}`)
 });
 //-------------------------------setting picture uploader
 //-------------------------------end of picture upload

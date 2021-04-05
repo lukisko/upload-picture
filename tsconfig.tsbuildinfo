@@ -1181,6 +1181,21 @@
         "signature": "bd30f27645e63b7ecfdba60baf818057d5a32bd341ab433985a98d95b1b492af",
         "affectsGlobalScope": false
       },
+      "./src/app.ts": {
+        "version": "b8d77148e6ca28c45a9790cc5f88af21fc9600e691874e11a75614a9cb65f24d",
+        "signature": "3495cfc064d20bf9bee22c02f5478743cdd3f0c99764e0a2e77cd5a4f168cb83",
+        "affectsGlobalScope": false
+      },
+      "./src/multiplechoice.ts": {
+        "version": "7e0585fda886ae87a66f3922ef43ecd58932fd1d18f2664fafa698c247202672",
+        "signature": "6b3d5c449d1b0de9d2b1c076d5d8e68e4e9376e77d88dd4130d147046c6dec2a",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/dotenv/index.d.ts": {
+        "version": "2cba9752a0198d6c9cc96bc63463020f6a00de7d8f63cfd6a5eb35975662b09a",
+        "signature": "2cba9752a0198d6c9cc96bc63463020f6a00de7d8f63cfd6a5eb35975662b09a",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@types/range-parser/index.d.ts": {
         "version": "4e88b833be14c7f384e0dcd57bb30acd799e8e34d212635d693e41a75a71164b",
         "signature": "4e88b833be14c7f384e0dcd57bb30acd799e8e34d212635d693e41a75a71164b",
@@ -1221,28 +1236,13 @@
         "signature": "3b05c396564e51753e921e1cc4aae1cf7cd9be53c891cf2e81fa29f11c0bd373",
         "affectsGlobalScope": false
       },
-      "./src/multiplechoice.ts": {
-        "version": "7e0585fda886ae87a66f3922ef43ecd58932fd1d18f2664fafa698c247202672",
-        "signature": "6b3d5c449d1b0de9d2b1c076d5d8e68e4e9376e77d88dd4130d147046c6dec2a",
-        "affectsGlobalScope": false
-      },
-      "./src/app.ts": {
-        "version": "e3c327f18ce1ac054c96c1960bed78103de14b3faaac40f859a245e16c74e64f",
-        "signature": "3495cfc064d20bf9bee22c02f5478743cdd3f0c99764e0a2e77cd5a4f168cb83",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/dotenv/index.d.ts": {
-        "version": "2cba9752a0198d6c9cc96bc63463020f6a00de7d8f63cfd6a5eb35975662b09a",
-        "signature": "2cba9752a0198d6c9cc96bc63463020f6a00de7d8f63cfd6a5eb35975662b09a",
-        "affectsGlobalScope": false
-      },
       "./node_modules/@types/multer/index.d.ts": {
         "version": "45db8351a5c289dffc40d01ce829f21f25ea7a1831eaafd74f915aa42d5d8353",
         "signature": "45db8351a5c289dffc40d01ce829f21f25ea7a1831eaafd74f915aa42d5d8353",
         "affectsGlobalScope": true
       },
       "./src/server.ts": {
-        "version": "5d93daabeb25a673bffab183ac87d353eafb1c4fa7ed6559f75aec98ef39a582",
+        "version": "806f3b152398d17a7ef165598b301d7bd5c930499d1a0bfbd10fe2a6d7296633",
         "signature": "dc564680890156170d57f244fb19cdef17124fc82d756ffa36a826a3ae20d1ef",
         "affectsGlobalScope": false
       },
@@ -2065,9 +2065,7 @@
       ],
       "./src/app.ts": [
         "./node_modules/@microsoft/mixed-reality-extension-sdk/built/index.d.ts",
-        "./node_modules/@types/express/index.d.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./src/multiplechoice.ts"
+        "./node_modules/@types/node/fs.d.ts"
       ],
       "./src/multiplechoice.ts": [
         "./node_modules/@microsoft/mixed-reality-extension-sdk/built/index.d.ts",
