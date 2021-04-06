@@ -11,7 +11,7 @@ import fs from 'fs';
 const upload = multer({ dest: __dirname + '/../public/uploads/images' });
 
 const app = express();
-const port = 80;
+const port = process.env.PORT || 8000;
 app.use(express.urlencoded());
 app.use(express.json());
 
@@ -47,7 +47,7 @@ app.post('/upload', upload.single('photo'), (req, res) => {
 });
 
 app.listen(port, () => {
-	//console.log(`Example app listening at http://localhost:${port}`)
+	//console.log(`Example app listening at http://localhost:${port}`);
 });
 
 //-------------------------------setting picture uploader
