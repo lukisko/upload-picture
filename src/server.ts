@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { resolve as resolvePath } from 'path';
 import App from './app';
 
-/*import express from 'express';---------------------------------change
+import express from 'express';
 import path from 'path';
 import multer from 'multer';
 import fs from 'fs';
@@ -11,11 +11,11 @@ import fs from 'fs';
 const upload = multer({ dest: __dirname + '/../public/uploads/images' });
 
 const app = express();
-const port = 443;
+const port = 80;
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.get('/', (req: any, res: any) => {
+app.get('/change', (req: any, res: any) => {
 	res.sendFile(path.join(__dirname + '/../public/index2.html'));
 });
 
@@ -48,7 +48,7 @@ app.post('/upload', upload.single('photo'), (req, res) => {
 
 app.listen(port, () => {
 	//console.log(`Example app listening at http://localhost:${port}`)
-});*/
+});
 
 //-------------------------------setting picture uploader
 
