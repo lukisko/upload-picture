@@ -7,12 +7,12 @@ import http from 'http';
 
 const port = process.env.PORT || 8080;
 
-http.createServer(function (req, res) {
+/*http.createServer(function (req, res) {
 	res.write('Hello World!'); //write a response to the client
 	res.end(); //end the response
-  }).listen(8080);
+  }).listen(8080);*/
 
-/*import express from 'express';
+import express from 'express';
 import path from 'path';
 import multer from 'multer';
 import fs from 'fs';
@@ -57,7 +57,7 @@ app.post('/upload', upload.single('photo'), (req, res) => {
 
 app.listen(port, () => {
 	//console.log(`Example app listening at http://localhost:${port}`);
-});*/
+});
 
 //-------------------------------setting picture uploader
 
