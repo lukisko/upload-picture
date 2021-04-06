@@ -3,7 +3,16 @@ import dotenv from 'dotenv';
 import { resolve as resolvePath } from 'path';
 import App from './app';
 
-import express from 'express';
+import http from 'http';
+
+const port = process.env.PORT || 8080;
+
+http.createServer(function (req, res) {
+	res.write('Hello World!'); //write a response to the client
+	res.end(); //end the response
+  }).listen(8080);
+
+/*import express from 'express';
 import path from 'path';
 import multer from 'multer';
 import fs from 'fs';
@@ -11,7 +20,7 @@ import fs from 'fs';
 const upload = multer({ dest: __dirname + '/../public/uploads/images' });
 
 const app = express();
-const port = process.env.PORT || 8000;
+
 app.use(express.urlencoded());
 app.use(express.json());
 
@@ -48,7 +57,7 @@ app.post('/upload', upload.single('photo'), (req, res) => {
 
 app.listen(port, () => {
 	//console.log(`Example app listening at http://localhost:${port}`);
-});
+});*/
 
 //-------------------------------setting picture uploader
 
