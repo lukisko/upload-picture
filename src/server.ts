@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { resolve as resolvePath } from 'path';
 import App from './app';
 
-import express from 'express';
+/*import express from 'express';---------------------------------change
 import path from 'path';
 import multer from 'multer';
 import fs from 'fs';
@@ -48,7 +48,7 @@ app.post('/upload', upload.single('photo'), (req, res) => {
 
 app.listen(port, () => {
 	//console.log(`Example app listening at http://localhost:${port}`)
-});
+});*/
 
 //-------------------------------setting picture uploader
 
