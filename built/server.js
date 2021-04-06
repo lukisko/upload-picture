@@ -35,7 +35,7 @@ const app = express_1.default();
 const port = 80;
 app.use(express_1.default.urlencoded());
 app.use(express_1.default.json());
-app.get('/change', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path_2.default.join(__dirname + '/../public/index2.html'));
 });
 app.post('/post', (req, res) => {

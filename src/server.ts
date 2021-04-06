@@ -11,11 +11,11 @@ import fs from 'fs';
 const upload = multer({ dest: __dirname + '/../public/uploads/images' });
 
 const app = express();
-const port = 7845;
+const port = 80;
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.get('/change', (req: any, res: any) => {
+app.get('/', (req: any, res: any) => {
 	res.sendFile(path.join(__dirname + '/../public/index2.html'));
 });
 

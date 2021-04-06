@@ -1242,7 +1242,7 @@
         "affectsGlobalScope": true
       },
       "./src/server.ts": {
-        "version": "890fb020f5bb5b87d3190feab47450d4de23ce498bb47f05745c04e2bfab5958",
+        "version": "3b10d2ac07bc37cedf5fb299d3802ff94721603afa01c1126282a86f95853f32",
         "signature": "dc564680890156170d57f244fb19cdef17124fc82d756ffa36a826a3ae20d1ef",
         "affectsGlobalScope": false
       },
@@ -1274,8 +1274,6 @@
       "strictNullChecks": false,
       "moduleResolution": 2,
       "esModuleInterop": true,
-      "watch": true,
-      "preserveWatchOutput": true,
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
